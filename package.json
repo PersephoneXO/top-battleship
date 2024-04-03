@@ -4,7 +4,7 @@
   "description": "My Setup Code Template",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "subtreePush": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
