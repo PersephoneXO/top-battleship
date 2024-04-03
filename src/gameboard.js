@@ -18,6 +18,14 @@ export const Gameboard=function(){
         return thisBoard;
     }
 
+    /*
+    types of ships:
+    - Carrier (5 hits)
+    - Battleship (4 hits)
+    - Destroyer (3 hits)
+    - Submarine (3 hits)
+    - Patrol Boat (2 hits)
+    */
 
     return {
         board,
