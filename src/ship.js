@@ -10,7 +10,8 @@ export const Ship=function(){
         let length=shipLength;
         let timesHit=0;
         let isSunk=false;
-        return {length,timesHit,isSunk};
+        let coordinates=[];
+        return {length,timesHit,isSunk,coordinates};
     }
 
     function hit(ship){
