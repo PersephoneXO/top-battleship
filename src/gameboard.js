@@ -73,15 +73,37 @@ export const Gameboard=function(){
     function receiveAttack(coord){
         let x=coord[1];
         let y=coord[0];
+        let allShips=[carrier,battleship,destoryer,submarine,patrolboat];
         if(board[x][y]==1){
             hits.push([x,y]);
             board[x][y]=2;
+            for(let ship of allShips){
+                if(ship.coordinates.some(coord=> coord[0]==x && coord[1]==y)){
+                    Ship().hit(ship);
+                    Ship().isSunk(ship);
+                }
+            }
         }
         else{
             misses.push([x,y]);
             board[x][y]=3;
         }
         return board;
+    }
+
+    //function to determine if all ships have been sunk or not
+    function isAllShipsSunk(){
+        let flag=false;
+        let allShips=[carrier,battleship,destoryer,submarine,patrolboat];
+        for(let ship of allShips){
+            if(ship.isSunk==false){
+                return flag;
+            }
+            else{
+                flag=true;
+            }
+        }
+        return flag;
     }
 
     return {
@@ -94,6 +116,7 @@ export const Gameboard=function(){
         placeShip,
         receiveAttack,
         hits,
-        misses
+        misses,
+        isAllShipsSunk
     }
 };
