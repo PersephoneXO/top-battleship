@@ -1,7 +1,12 @@
 import { Ship } from "./ship.js";
 
 export const Gameboard=function(){
+    //the gameboard itself
     let board=initBoard();
+
+    //array of previously attacked coords
+    let hits=[]
+    let misses=[];
 
     //helper function for generating each row
     function initRow(){
@@ -64,6 +69,21 @@ export const Gameboard=function(){
         return board;
     }
 
+    //function to receive attacks and determine if it's a "hit" or not while also recording the coordinates
+    function receiveAttack(coord){
+        let x=coord[1];
+        let y=coord[0];
+        if(board[x][y]==1){
+            hits.push([x,y]);
+            board[x][y]=2;
+        }
+        else{
+            misses.push([x,y]);
+            board[x][y]=3;
+        }
+        return board;
+    }
+
     return {
         board,
         carrier,
@@ -71,6 +91,9 @@ export const Gameboard=function(){
         destoryer,
         submarine,
         patrolboat,
-        placeShip
+        placeShip,
+        receiveAttack,
+        hits,
+        misses
     }
 };
