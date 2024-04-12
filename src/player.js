@@ -12,7 +12,6 @@ export const Player=function(){
     }
 
     return{
-        newPlayer,
-
+        newPlayer
     }
 }
